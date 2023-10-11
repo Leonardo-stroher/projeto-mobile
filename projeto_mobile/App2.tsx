@@ -10,127 +10,75 @@ import {
   TextInput,
   Image,
 } from 'react-native';
-
-const App2 = () => {
-  return(<>
-    <Ex1 titulo = 'TITULO'/>
-  </>
-  );
-}
- export default App2;
-
-type Ex1Props = {
-  titulo: string;
-}
-
-const Ex1 = (props: Ex1Props) => {
-  return <>
-      <View style={styles.font}>
-          <Text>{props.titulo}</Text>
-          <TextInput style={styles.caixaTexto}/>
-      </View>
-  </>
-}
-
-
-const Ex2 = () => {
-  return <ScrollView>
-      <View style={styles.container2}>
-          <Image style={styles.imagem} source={{
-              uri: 'https://reactnative.dev/docs/assets/p_cat1.png',
-          }}/>
-
-          <Image style={styles.imagem} source={{
-              uri: 'https://reactnative.dev/docs/assets/p_cat1.png',
-          }}/>
-
-          <Image style={styles.imagem} source={{
-              uri: 'https://reactnative.dev/docs/assets/p_cat1.png',
-          }}/>
-
-          <Image style={styles.imagem} source={{
-              uri: 'https://reactnative.dev/docs/assets/p_cat1.png',
-          }}/>
-
-          <Image style={styles.imagem} source={{
-              uri: 'https://reactnative.dev/docs/assets/p_cat1.png',
-          }}/>
-      </View>
-  </ScrollView>
-}
-
-
-const Ex3 = () => {
-    const [texto, setTexto] = useState('');
-
-    return <>
-        <View style={styles.container3}>
-            <Text>{texto}</Text>
-            <TextInput 
-                style={styles.caixaTexto2}
-                onChangeText={(text) => {setTexto(text)}}/>
-        </View>
-    </>
-}
-
-
-
-const styles = StyleSheet.create({
-    font: {
-      backgroundColor: 'black'
-    },
-    container: {
-        backgroundColor: 'yellow',
-        borderWidth: 3,
-        borderColor: 'red'
-    },
-    caixaTexto: {
-        backgroundColor: 'white',
-        borderWidth: 3,
-        borderColor: 'orange'
-
-    },
-    container2: {
-      backgroundColor: 'green',
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center'
-  },
-  imagem: {
-      width: 200,
-      height: 200
-  },
-  container3: {
-    backgroundColor: 'yellow',
-    borderWidth: 3,
-    borderColor: 'red'
-},
-caixaTexto2: {
-    backgroundColor: 'white',
-    borderWidth: 3,
-    borderColor: 'orange'
-
-}
-});
-
-export {Ex1, Ex2, Ex3};
+import ListaFlat from './lista';
+import ListaSection from './listaSection';
+import Ex4 from './Ex4';
 
 const lista = [
-  {key: 1 , descricao: 'teste1'},
-  {key: 2 , descricao: 'teste2'},
-  {key: 3 , descricao: 'teste3'},
-  {key: 4 , descricao: 'teste4'},
-  {key: 5 , descricao: 'teste5'}
+  {key: 1 , descricao: 'jorge'},
+  {key: 2 , descricao: 'markonha'},
+  {key: 3 , descricao: 'lucas'},
+  {key: 4 , descricao: 'emo filho da puta'},
+  {key: 5 , descricao: 'broba'}
 ];
+
+const listaSection = [
+  // {title:'A' , data:[{key: 1, descricao:'Ana'}]},
+  // {title:'B' , data:[{key: 2, descricao:'Bruno'}]},
+  // {title:'C' , data:[{key: 3, descricao:'Carlos'}]},
+  // {title:'D' , data:[{key: 4, descricao:'Douglas'}]},
+  // {title:'E' , data:[{key: 5, descricao:'Elio'}]},
+  // {title:'F' , data:[{key: 6, descricao:'Fábio'}]}
+]
 
 
 const App2 = () => {
   return(
       <>
-      <ListaFlat arrays(lista)/>
-      <ListaSection arrays(listaSection)/>
+      {/* <ListaFlat array = {lista}/> */}
+      {/* <ListaSection array = {listaSection}/> */}
+      <Ex4 lista={lista}/>
       </>
   );
 }
 
+
 export default App2;
+
+const styles = StyleSheet.create({
+  font: {
+    backgroundColor: 'black'
+  },
+  container: {
+      backgroundColor: 'yellow',
+      borderWidth: 3,
+      borderColor: 'red'
+  },
+  caixaTexto: {
+      backgroundColor: 'white',
+      borderWidth: 3,
+      borderColor: 'orange'
+
+  },
+  container2: {
+    backgroundColor: 'green',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+},
+imagem: {
+    width: 200,
+    height: 200
+},
+container3: {
+  backgroundColor: 'yellow',
+  borderWidth: 3,
+  borderColor: 'red'
+},
+caixaTexto2: {
+  backgroundColor: 'white',
+  borderWidth: 3,
+  borderColor: 'orange'
+
+}
+});
