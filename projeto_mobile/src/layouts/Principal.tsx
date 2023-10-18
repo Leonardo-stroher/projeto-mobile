@@ -9,6 +9,7 @@ import {
   useColorScheme,
   TextInput,
   Image,
+  Button,
 } from 'react-native';
 import ListaFlat from './lista';
 import ListaSection from './listaSection';
@@ -21,6 +22,19 @@ const lista = [
   {key: 4 , descricao: 'emo filho da puta'},
   {key: 5 , descricao: 'broba'}
 ];
+import { HomeProps } from '../types';
+import ExemploStylesText from './ExemploStylesText';
+import ExemploStylesView from './ExemploStyleView';
+import Login from './Login';
+
+
+// const lista = [
+  // { key: 1, descricao: 'jorge' },
+  // { key: 2, descricao: 'markonha' },
+  // { key: 3, descricao: 'lucas' },
+  // { key: 4, descricao: 'emo filho da puta' },
+  // { key: 5, descricao: 'broba' }
+// ];
 
 const listaSection = [
   // {title:'A' , data:[{key: 1, descricao:'Ana'}]},
@@ -31,19 +45,26 @@ const listaSection = [
   // {title:'F' , data:[{key: 6, descricao:'Fábio'}]}
 ]
 
-
-const App2 = () => {
-  return(
-      <>
+const Principal = ({ navigation, route }: HomeProps) => {
+  return (
+    <>
+      <Button
+        title="Go to Details"
+        onPress={() => navigation.navigate('Detalhes')} />
       {/* <ListaFlat array = {lista}/> */}
       {/* <ListaSection array = {listaSection}/> */}
-      <Ex4 lista={lista}/>
-      </>
+      {/* <Ex4 lista={lista} /> */}
+      {/* <ExemploStylesText /> */}
+      {/* <ExemploStylesView /> */}
+      <Login 
+        navigation={navigation}
+        route={route}/>
+    </>
   );
 }
 
 
-export default App2;
+export default Principal;
 
 const styles = StyleSheet.create({
   font: {

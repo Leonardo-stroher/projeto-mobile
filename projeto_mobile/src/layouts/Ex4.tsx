@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: 'black',
         borderWidth: 3,
-        borderColor: 'white'
+        borderColor: 'white',
     },
     caixaTexto: {
         backgroundColor: 'blue',
