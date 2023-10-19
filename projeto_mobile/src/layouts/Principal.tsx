@@ -55,10 +55,7 @@ const Principal = ({ navigation, route }: HomeProps) => {
       {/* <ListaSection array = {listaSection}/> */}
       {/* <Ex4 lista={lista} /> */}
       {/* <ExemploStylesText /> */}
-      {/* <ExemploStylesView /> */}
-      <Login 
-        navigation={navigation}
-        route={route}/>
+      <ExemploStylesView />
     </>
   );
 }
