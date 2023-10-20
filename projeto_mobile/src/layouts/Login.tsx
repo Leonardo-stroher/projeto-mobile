@@ -11,31 +11,57 @@ const Login = ({ navigation, route }: LoginProps) => {
     function logar() {
         setIsLoading(true);
 
-        auth()
-            .signInWithEmailAndPassword(email, senha)
-            .then(() => { navigation.navigate('Home') })
-            .catch((error) => console.log(error))
-            .finally(() => setIsLoading(false))
+        if (email && senha) {
+            auth()
+                .signInWithEmailAndPassword(email, senha)
+                .then(() => { navigation.navigate('Home') })
+                .catch((error) => console.log(error))
+                .finally(() => setIsLoading(false))
+        } else {
+            setIsLoading(false);
+        }
+
     }
     function redefinirSenha() {
-        auth()
-            .sendPasswordResetEmail(email)
-            .then(() => Alert.alert("Redefinir senha", "Enviamos um email pra você"))
-            .catch((error) => console.log(error))
+
+        if (email && senha) {
+            auth()
+                .sendPasswordResetEmail(email)
+                .then(() => Alert.alert("Redefinir senha", "Enviamos um email pra você"))
+                .catch((error) => console.log(error))
+        } else {
+            setIsLoading(false);
+        }
     }
-    
     return (
-        <View style={styles.alinharItens}>
-            <Text>DIGITE SEU EMAIL</Text>
-            <TextInput style={styles.textoimposto} />
-            <Pressable
-                style={styles.textoBotao}
-                onPress={() => logar()} >
-                    <Text style={styles.textoBotao}>teste2</Text>
-                </Pressable>
+        <View style={[styles.alinharItens, styles.cordefundo]}>
             {<Image
                 style={styles.imagemshureg}
-                source={require('../assets/_b490053a-38ec-45ad-a8c2-a49340df71f8.jpg')} />}
+                source={require('../assets/shrek_perfil.jpg')} />}
+            <Text style={styles.texto1}>DIGITE SEU EMAIL</Text>
+            <TextInput
+                style={styles.textoimposto}
+                onChangeText={(text) => setEmail(text)} />
+            <Text style={styles.texto1}>DIGITE SUA SENHA</Text>
+            <TextInput
+                style={styles.textoimposto}
+                onChangeText={(text) => setSenha(text)} />
+            <Pressable
+                style={styles.textoBotao}
+                disabled={isLoading}
+                onPress={() => logar()} >
+                <Text style={styles.textoBotao}>Logar</Text>
+            </Pressable>
+            <Pressable
+                style={styles.textoBotao}
+                onPress={() => redefinirSenha()} >
+                <Text style={styles.textoBotao}>Redefinir senha</Text>
+            </Pressable>
+            <Pressable
+                style={styles.textoBotao}
+                onPress={() => navigation.navigate('Cadastro')} >
+                <Text style={styles.textoBotao}>Se cadastrar</Text>
+            </Pressable>
         </View>
     )
 }
@@ -43,36 +69,41 @@ const Login = ({ navigation, route }: LoginProps) => {
 export default Login;
 
 const styles = StyleSheet.create({
+    cordefundo: {
+        backgroundColor: '#556B2F',
+    },
     texto1: {
-        backgroundColor: 'blue',
+        color: 'black',
         alignItems: 'center',
     },
     alinharItens: {
         alignItems: 'center',
-        justifyContent:'space-between',
-        backgroundColor: 'blue',
-        flex:1
+        justifyContent: 'space-between',
+        flex: 1
     },
     textoBotao: {
         color: 'black',
         fontSize: 30,
         fontWeight: 'bold',
-        justifyContent:'space-between',
-        backgroundColor:'#7CFC00',
+        justifyContent: 'space-between',
+        backgroundColor: '#6B8E23',
+        borderRadius: 50,
     },
     textoimposto: {
-        width:300,
-        height:50,
-        fontSize:15,
-        justifyContent:'space-between',
-        backgroundColor:'black'
+        width: 300,
+        height: 50,
+        fontSize: 15,
+        justifyContent: 'space-between',
+        backgroundColor: 'black',
+        borderRadius: 100,
     },
     imagemshureg: {
-       width:300,
-        height:300,
+        width: 200,
+        height: 200,
+        borderRadius: 1000,
     },
     caixatexto: {
         backgroundColor: 'preto',
-        color:'white',
+        color: 'white',
     }
-});
+})
