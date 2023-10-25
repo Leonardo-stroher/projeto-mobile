@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import firestore from "@react-native-firebase/firestore"
 import { Inotas } from "../models/Inota";
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { Alert, FlatList, Pressable, StyleSheet, Text, View } from "react-native";
 
 export default ({ navigation, route }: ListarNotasProps) => {
     const [notas, setNotas] = useState([] as Inotas[])
@@ -27,36 +27,68 @@ export default ({ navigation, route }: ListarNotasProps) => {
                 setIsLoading(false);
             });
 
-            return () => subscribe();
+        return () => subscribe();
     }, []);
+
+    function deletarNota(id: string) {
+        setIsLoading(true);
+
+        firestore()
+            .collection('notas')
+            .doc(id)
+            .delete()
+            .then(() => {
+                Alert.alert("Nota", "Removida com sucesso")
+                navigation.navigate('Home')
+            })
+            .catch((error) => console.log(error))
+            .finally(() => setIsLoading(false));
+    }
 
     return (
         <View>
-            <Text style={{ fontSize: 30}}>Listagem de notas</Text>
+            <Text style={{ fontSize: 30 }}>Listagem de notas</Text>
             <FlatList
-            data={notas}
-            renderItem={(info) => {
-                return (
-                    <View style={styles.card}>
-                        <Text>{info.index}</Text>
-                        <Text>{info.item.titulo}</Text>
-                        <Text>{info.item.descricao}</Text>
+                data={notas}
+                renderItem={(info) => {
+                    return (
+                        <View style={styles.card}>
+                            <View style={styles.dado_card}>
+                                <Text>{info.index}</Text>
+                                <Text style={{fontSize: 35}}>{info.item.titulo}</Text>
+                                <Text>{info.item.descricao}</Text>
+                            </View>
+                            <View style={styles.botao_deletar}>
+                                <Pressable
+                                    onPress={() => deletarNota(info.item.id)}>
+                                    <Text style={{ fontWeight: "bold", fontSize: 50 }}>
+                                        X
+                                    </Text>
+                                </Pressable>
+                            </View>
+                        </View>
+                    );
+                }} />
+        </View >
 
-                    </View>
-                );
-            }}/>
-
-            </View>
-        
     );
 }
 
-const styles = StyleSheet.create ({
-    card:{
-        borderWidth:2,
+const styles = StyleSheet.create({
+    card: {
+        borderWidth: 2,
         borderColor: 'yellow',
         margin: 5,
         borderRadius: 10,
         paddig: 3
+    },
+    dado_card: {
+        flex: 1
+    },
+    botao_deletar: {
+    backgroundColor: 'red',
+    width: 50,
+    justifyContent: 'center',
+    alignItems: 'center'
     }
 })

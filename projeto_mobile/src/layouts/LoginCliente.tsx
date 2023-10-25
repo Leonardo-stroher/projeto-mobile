@@ -3,7 +3,7 @@ import { HomeProps, LoginProps } from "../types";
 import auth from "@react-native-firebase/auth";
 import { useState } from "react";
 
-const Login = ({ navigation, route }: LoginProps) => {
+const LoginClientes = ({ navigation, route }: LoginClienteProps) => {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [isLoading, setIsLoading] = useState(false);
