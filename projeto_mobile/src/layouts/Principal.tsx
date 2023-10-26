@@ -51,6 +51,17 @@ const Principal = ({ navigation, route }: HomeProps) => {
       <Button
         title="Go to Details"
         onPress={() => navigation.navigate('Detalhes')} />
+        <View style={styles.container}>
+      <Button
+        title="Listar Notas"
+        color={'green'}
+        onPress={() => navigation.navigate('ListaNota')} />
+
+      <Button
+        title="Cadastrar Nota"
+        onPress={() => navigation.navigate('CadastroNota')} />
+     
+    </View>
       {/* <ListaFlat array = {lista}/> */}
       {/* <ListaSection array = {listaSection}/> */}
       {/* <Ex4 lista={lista} /> */}

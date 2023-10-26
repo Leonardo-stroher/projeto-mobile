@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import firestore from "@react-native-firebase/firestore"
 import { Inotas } from "../models/Inota";
 import { Alert, FlatList, Pressable, StyleSheet, Text, View } from "react-native";
+import { ListarNotaProps } from "../types";
 
-export default ({ navigation, route }: ListarNotasProps) => {
+export default ({ navigation, route }: ListarNotaProps) => {
     const [notas, setNotas] = useState([] as Inotas[])
     const [isLoading, setIsLoading] = useState(false);
 
@@ -45,6 +46,12 @@ export default ({ navigation, route }: ListarNotasProps) => {
             .finally(() => setIsLoading(false));
     }
 
+    function AlterarNota(id: string){
+        navigation.navigate("AlterarNota",
+        {id: id, palavra: 'Pericles'})
+
+    }
+
     return (
         <View>
             <Text style={{ fontSize: 30 }}>Listagem de notas</Text>
@@ -65,6 +72,7 @@ export default ({ navigation, route }: ListarNotasProps) => {
                                         X
                                     </Text>
                                 </Pressable>
+                                
                             </View>
                         </View>
                     );
