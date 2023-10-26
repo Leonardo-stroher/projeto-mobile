@@ -1,10 +1,13 @@
+import CadastroNota from "../layouts/CadastroNota";
+import ListaNota from "../layouts/ListaNota";
+import { ListarNotaProps, NotaProps } from "../types";
 
-const NotaScreen = ({navigation, route}: NotaProps) => {
+const ListaNotaScreen = ({navigation, route}: ListarNotaProps) => {
     return (
 
-        <CadastroNota navigation={navigation} route={route} />
+        <ListaNota navigation={navigation} route={route} />
 
     );
 };
 
-export default CadastroNotaScreen;
+export default ListaNotaScreen;

@@ -8,6 +8,9 @@ type RootStackParamList = {
     Cadastro: undefined;
     CadastroNota: undefined;
     CadClientes: undefined;
+    ListaNota: undefined;
+    Nota: undefined;
+    AlterarNota: {id: string, palavra: string},
 };
 
 type HomeProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
@@ -22,6 +25,10 @@ type CadastroClienteProps = NativeStackScreenProps<RootStackParamList, 'CadClien
 
 type CadastroNotaProps = NativeStackScreenProps<RootStackParamList, 'CadastroNota'>;
 
-// type NotaProps = NativeStackScreenProps<RootStackParamList, 'Nota'>;
+type ListarNotaProps = NativeStackScreenProps<RootStackParamList, 'ListaNota'>;
 
-export type {HomeProps, RootStackParamList, LoginProps, CadastrosProps, CadastroNotaProps,LoginClienteProps};
+type AlterarNotaProps = NativeStackScreenProps<RootStackParamList, 'AlterarNota'>;
+
+ type NotaProps = NativeStackScreenProps<RootStackParamList, 'Nota'>;
+
+export type {NotaProps, AlterarNotaProps, HomeProps, RootStackParamList, LoginProps, CadastrosProps, CadastroNotaProps,LoginClienteProps, CadastroClienteProps, ListarNotaProps};

@@ -2,9 +2,9 @@ import auth from "@react-native-firebase/auth";
 import firestore from "@react-native-firebase/firestore"
 import { useState } from "react";
 import { Alert, Image, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
-import { CadastrosProps } from "../types";
+import { CadastroClienteProps, CadastrosProps } from "../types";
 
-export default ({navigation, route}: CadastrosProps) => {
+export default ({navigation, route}: CadastroClienteProps) => {
     const [nome, setNome] = useState('');
     const [cpf, setCpf] = useState('');
     const [endereco, setEndereco] = useState('');
@@ -58,7 +58,7 @@ export default ({navigation, route}: CadastrosProps) => {
                 style={styles.textoBotao}
                 disabled={isLoading}
                 onPress={() => cadastrarcliente()} >
-                <Text style={styles.textoBotao}>Logar</Text>
+                <Text style={styles.textoBotao}>cadastro</Text>
             </Pressable>
         </View>
     )
