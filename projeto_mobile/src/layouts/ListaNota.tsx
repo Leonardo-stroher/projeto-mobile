@@ -54,7 +54,7 @@ export default ({ navigation, route }: ListarNotaProps) => {
 
     return (
         <View>
-            <Text style={{ fontSize: 30 }}>Listagem de notas</Text>
+            <Text style={{ fontSize: 30, color:'black' }}>Listagem de notas</Text>
             <FlatList
                 data={notas}
                 renderItem={(info) => {
@@ -84,6 +84,7 @@ export default ({ navigation, route }: ListarNotaProps) => {
 
 const styles = StyleSheet.create({
     card: {
+        backgroundColor: 'black',
         borderWidth: 2,
         borderColor: 'yellow',
         margin: 5,
