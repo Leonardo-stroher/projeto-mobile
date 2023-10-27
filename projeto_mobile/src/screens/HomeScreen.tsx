@@ -4,9 +4,7 @@ import { HomeProps } from "../types";
 
 const HomeScreen = ({ navigation, route }: HomeProps) =>{
     return (
-        <View style={{
-            flex: 1,
-        }}>
+        <View style={{flex: 1,}}>
             <Principal navigation={navigation} route={route} />
         </View>
     );

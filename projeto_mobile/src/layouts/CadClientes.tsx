@@ -1,27 +1,37 @@
 import auth from "@react-native-firebase/auth";
 import firestore from "@react-native-firebase/firestore"
 import { useState } from "react";
-import { Alert, Image, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { Alert, Image, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import { CadastroClienteProps, CadastrosProps } from "../types";
 
 export default ({navigation, route}: CadastroClienteProps) => {
+    const [id,] = useState(route.params.id)
     const [nome, setNome] = useState('');
     const [cpf, setCpf] = useState('');
-    const [endereco, setEndereco] = useState('');
+    const [rua, setRua] = useState('');
+    const [numero, setNumero] = useState('');
+    const [complemento, setComplemento] = useState('');
+    const [bairro, setBairro] = useState('');
+    const [cidade, setCidade] = useState('');
+    const [estado, setEstado] = useState('');
     const [datanasc, setDatanasc] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
     function cadastrarcliente() {
         setIsLoading(true);
 
-        if (nome && cpf && endereco && datanasc) {
 
         firestore()
             .collection('Cliente')
             .add({
                 nome,
                 cpf,
-                endereco,
+                rua,
+                numero,
+                complemento,
+                bairro,
+                cidade,
+                estado,
                 datanasc,
                 created_at: firestore.FieldValue.serverTimestamp()
             })
@@ -31,13 +41,13 @@ export default ({navigation, route}: CadastroClienteProps) => {
             })
             .catch((error) => console.log(error))
             .finally(() => setIsLoading(false));
-    }
 }
     return (
         <View style={[styles.alinharItens, styles.cordefundo]}>
+            <ScrollView>
             {<Image
                 style={styles.imagempanda}
-                source={require('../assets/panda.jpg')} />}
+                source={require('../assets/shrek_perfil.jpg')} />}
             <Text style={styles.texto1}>DIGITE SEU NOME</Text>
             <TextInput
                 style={styles.textoimposto}
@@ -46,10 +56,10 @@ export default ({navigation, route}: CadastroClienteProps) => {
             <TextInput
                 style={styles.textoimposto}
                 onChangeText={(text) => setCpf(text)} />
-                <Text style={styles.texto1}>DIGITE SEU ENDEREÇO</Text>
+                <Text style={styles.texto1}>DIGITE SUA RUA</Text>
             <TextInput
                 style={styles.textoimposto}
-                onChangeText={(text) => setEndereco(text)} />
+                onChangeText={(text) => setRua(text)} />
             <Text style={styles.texto1}>DIGITE SUA DATA DE NASCIMENTO</Text>
             <TextInput
                 style={styles.textoimposto}
@@ -60,6 +70,7 @@ export default ({navigation, route}: CadastroClienteProps) => {
                 onPress={() => cadastrarcliente()} >
                 <Text style={styles.textoBotao}>cadastro</Text>
             </Pressable>
+            </ScrollView>
         </View>
     )
 
@@ -71,7 +82,7 @@ const styles = StyleSheet.create({
         flex: 1
     },
     cordefundo: {
-        backgroundColor: '#B22222',
+        backgroundColor: 'green',
     },
     texto1: {
         color: 'black',

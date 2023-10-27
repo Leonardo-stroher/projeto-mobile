@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Alert, Image, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
-import { AtividadeProps } from "../types";
 import firestore from "@react-native-firebase/firestore"
 
 const AtividadeAvaliativa3 = () => {
