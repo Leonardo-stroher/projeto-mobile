@@ -36,12 +36,12 @@ export default ({ navigation, route }: AlterarClienteProps) => {
                 created_at: firestore.FieldValue.serverTimestamp()
             })
             .then(() => {
-                Alert.alert("Cliente", "Cadastrada com sucesso")
+                Alert.alert("Cliente", "Alterada com sucesso")
                 navigation.navigate('Home')
             })
     }
     return (
-        <View style={styles.container}>
+        <View style={styles.alinharItems}>
             <ScrollView>
                 <Text>Nome</Text>
                 <TextInput style={styles.box}
@@ -79,21 +79,39 @@ export default ({ navigation, route }: AlterarClienteProps) => {
                 <TextInput style={styles.box}
                 onChangeText={(text) => {setDatanasc(text)}}/>
 
+                <Pressable
+                style={styles.textoBotao}
+                disabled={isLoading}
+                onPress={() => AlterarCliente()} >
+                    <Text style={{fontSize: 40}}>Alterar</Text>
+                    </Pressable>
+
             </ScrollView>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
+    alinharItems: {
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        flex: 1
+    },
     box: {
         backgroundColor: 'black',
         fontSize: 10,
         borderRadius: 2000,
+        marginTop: 20
 
     },
     container: {
         alignItems: 'center',
         justifyContent: 'space-between',
-        flex: 1
+        
+    },
+    textoBotao: {
+        backgroundColor: 'black',
+        color: 'white',
+        borderRadius: 1000,
     }
 })

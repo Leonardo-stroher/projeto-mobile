@@ -4,8 +4,7 @@ import { useState } from "react";
 import { Alert, Image, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import { CadastroClienteProps, CadastrosProps } from "../types";
 
-export default ({navigation, route}: CadastroClienteProps) => {
-    const [id,] = useState(route.params.id)
+export default ({ navigation, route }: CadastroClienteProps) => {
     const [nome, setNome] = useState('');
     const [cpf, setCpf] = useState('');
     const [rua, setRua] = useState('');
@@ -41,37 +40,59 @@ export default ({navigation, route}: CadastroClienteProps) => {
             })
             .catch((error) => console.log(error))
             .finally(() => setIsLoading(false));
-}
+    }
     return (
-        <View style={[styles.alinharItens, styles.cordefundo]}>
-            <ScrollView>
-            {<Image
-                style={styles.imagempanda}
-                source={require('../assets/shrek_perfil.jpg')} />}
-            <Text style={styles.texto1}>DIGITE SEU NOME</Text>
-            <TextInput
-                style={styles.textoimposto}
-                onChangeText={(text) => setNome(text)} />
-            <Text style={styles.texto1}>DIGITE SEU CPF</Text>
-            <TextInput
-                style={styles.textoimposto}
-                onChangeText={(text) => setCpf(text)} />
+
+        <ScrollView style={[ styles.cordefundo]}>
+            <View style={[styles.alinharItens,]} >
+                {<Image
+                    style={styles.imagempanda}
+                    source={require('../assets/shrek_perfil.jpg')} />}
+                <Text style={styles.texto1}>DIGITE SEU NOME</Text>
+                <TextInput
+                    style={styles.textoimposto}
+                    onChangeText={(text) => setNome(text)} />
+                <Text style={styles.texto1}>DIGITE SEU CPF</Text>
+                <TextInput
+                    style={styles.textoimposto}
+                    onChangeText={(text) => setCpf(text)} />
                 <Text style={styles.texto1}>DIGITE SUA RUA</Text>
-            <TextInput
-                style={styles.textoimposto}
-                onChangeText={(text) => setRua(text)} />
-            <Text style={styles.texto1}>DIGITE SUA DATA DE NASCIMENTO</Text>
-            <TextInput
-                style={styles.textoimposto}
-                onChangeText={(text) => setDatanasc(text)} />
-            <Pressable
-                style={styles.textoBotao}
-                disabled={isLoading}
-                onPress={() => cadastrarcliente()} >
-                <Text style={styles.textoBotao}>cadastro</Text>
-            </Pressable>
-            </ScrollView>
-        </View>
+                <TextInput
+                    style={styles.textoimposto}
+                    onChangeText={(text) => setRua(text)} />
+                <Text style={styles.texto1}>DIGITE O NUMERO</Text>
+                <TextInput
+                    style={styles.textoimposto}
+                    onChangeText={(text) => setNumero(text)} />
+                <Text style={styles.texto1}>DIGITE COMPLEMENTO</Text>
+                <TextInput
+                    style={styles.textoimposto}
+                    onChangeText={(text) => setComplemento(text)} />
+                <Text style={styles.texto1}>DIGITE SEU BAIRRO</Text>
+                <TextInput
+                    style={styles.textoimposto}
+                    onChangeText={(text) => setBairro(text)} />
+                <Text style={styles.texto1}>DIGITE SUA CIDADE</Text>
+                <TextInput
+                    style={styles.textoimposto}
+                    onChangeText={(text) => setCidade(text)} />
+                <Text style={styles.texto1}>DIGITE SEU ESTADO</Text>
+                <TextInput
+                    style={styles.textoimposto}
+                    onChangeText={(text) => setEstado(text)} />
+                <Text style={styles.texto1}>DIGITE SUA DATA DE NASCIMENTO</Text>
+                <TextInput
+                    style={styles.textoimposto}
+                    onChangeText={(text) => setDatanasc(text)} />
+                <Pressable
+                    style={styles.textoBotao}
+                    disabled={isLoading}
+                    onPress={() => cadastrarcliente()} >
+                    <Text style={styles.textoBotao}>cadastro</Text>
+                </Pressable>
+            </View>
+        </ScrollView>
+
     )
 
 }
@@ -79,7 +100,8 @@ const styles = StyleSheet.create({
     alinharItens: {
         alignItems: 'center',
         justifyContent: 'space-between',
-        flex: 1
+        flex: 1,
+
     },
     cordefundo: {
         backgroundColor: 'green',
@@ -103,6 +125,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         backgroundColor: 'black',
         borderRadius: 100,
+        margin:20
     },
     imagempanda: {
         width: 200,
