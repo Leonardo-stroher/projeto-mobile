@@ -7,7 +7,6 @@ import Carregamento from "./Carregamento";
 
 export default ({ navigation, route }: AlterarNotaProps) => {
     const [id,] = useState(route.params.id);
-    const [palavra,] = useState(route.params.palavra);
     const [titulo, setTitulo] = useState('');
     const [descricao, setDescricao] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -15,7 +14,7 @@ export default ({ navigation, route }: AlterarNotaProps) => {
     async function carregar() {
         setIsLoading(true);
         const resultado = await firestore()
-            .collection('')
+            .collection('Notas')
             .doc(id)
             .get();
 
@@ -26,10 +25,10 @@ export default ({ navigation, route }: AlterarNotaProps) => {
 
         setTitulo(nota.titulo),
             setDescricao(nota.descricao)
+            setIsLoading(false);
     }
 
     useEffect(() => {
-        setIsLoading(true);
         carregar();
 
     }, []);
@@ -38,7 +37,7 @@ export default ({ navigation, route }: AlterarNotaProps) => {
         setIsLoading(true);
 
         firestore()
-            .collection('notas')
+            .collection('Notas')
             .doc(id)
             .update({
                 titulo,
@@ -56,7 +55,7 @@ export default ({ navigation, route }: AlterarNotaProps) => {
     return (
         <View>
             <Carregamento isLoading={isLoading} />
-            <Text> Titulo {palavra}</Text>
+            <Text> Titulo </Text>
             <TextInput
                 style={styles.caixa_texto}
                 value={titulo}

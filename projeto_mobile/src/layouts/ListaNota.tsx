@@ -12,7 +12,7 @@ export default ({ navigation, route }: ListarNotaProps) => {
         setIsLoading(true);
 
         const subscribe = firestore()
-            .collection('notas')
+            .collection('Notas')
             .onSnapshot(querySnapshot => {
                 const data = querySnapshot.docs.map(doc => {
 
@@ -35,7 +35,7 @@ export default ({ navigation, route }: ListarNotaProps) => {
         setIsLoading(true);
 
         firestore()
-            .collection('notas')
+            .collection('Notas')
             .doc(id)
             .delete()
             .then(() => {
@@ -46,15 +46,13 @@ export default ({ navigation, route }: ListarNotaProps) => {
             .finally(() => setIsLoading(false));
     }
 
-    function AlterarNota(id: string){
-        navigation.navigate("AlterarNota",
-        {id: id, palavra: 'Pericles'})
-
+    function AlterarNota(id: string) {
+        navigation.navigate("AlterarNota", { id: id, palavra: 'Pericles' })
     }
 
     return (
         <View>
-            <Text style={{ fontSize: 30, color:'black' }}>Listagem de notas</Text>
+            <Text style={{ fontSize: 30, color: 'black' }}>Listagem de notas</Text>
             <FlatList
                 data={notas}
                 renderItem={(info) => {
@@ -62,9 +60,19 @@ export default ({ navigation, route }: ListarNotaProps) => {
                         <View style={styles.card}>
                             <View style={styles.dado_card}>
                                 <Text>{info.index}</Text>
-                                <Text style={{fontSize: 35}}>{info.item.titulo}</Text>
+                                <Text style={{ fontSize: 35 }}>{info.item.titulo}</Text>
                                 <Text>{info.item.descricao}</Text>
                             </View>
+
+                            <View style={styles.botao_alterar}>
+                                <Pressable
+                                    onPress={() => AlterarNota(info.item.id)}>
+                                    <Text style={{ fontWeight: "bold", fontSize: 40 }}>
+                                        A
+                                    </Text>
+                                </Pressable>
+                            </View>
+
                             <View style={styles.botao_deletar}>
                                 <Pressable
                                     onPress={() => deletarNota(info.item.id)}>
@@ -72,7 +80,7 @@ export default ({ navigation, route }: ListarNotaProps) => {
                                         X
                                     </Text>
                                 </Pressable>
-                                
+
                             </View>
                         </View>
                     );
@@ -95,9 +103,15 @@ const styles = StyleSheet.create({
         flex: 1
     },
     botao_deletar: {
-    backgroundColor: 'red',
-    width: 50,
-    justifyContent: 'center',
-    alignItems: 'center'
+        backgroundColor: 'red',
+        width: 50,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    botao_alterar: {
+        backgroundColor: 'yellow',
+        width: 40,
+        justifyContent: 'center',
+        alignItems: 'center',
     }
 })

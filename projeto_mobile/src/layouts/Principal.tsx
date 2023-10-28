@@ -69,6 +69,12 @@ const Principal = ({ navigation, route }: HomeProps) => {
           color={'red'}
           onPress={() => navigation.navigate('CadClientes')} />
 
+          <Button
+          title="Lista Cliente"
+          color={'black'}
+          onPress={() => navigation.navigate('ListaCliente')} />
+
+
         <Pai />
       </View>
       {/* <ListaFlat array = {lista}/> */}
