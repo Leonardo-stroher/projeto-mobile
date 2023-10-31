@@ -40,7 +40,7 @@ export default ({ navigation, route }: ListarNotaProps) => {
             .delete()
             .then(() => {
                 Alert.alert("Nota", "Removida com sucesso")
-                navigation.navigate('Home')
+                navigation.navigate('HomeNova')
             })
             .catch((error) => console.log(error))
             .finally(() => setIsLoading(false));

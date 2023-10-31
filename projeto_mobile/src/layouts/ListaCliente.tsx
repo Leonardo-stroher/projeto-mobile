@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { ScrollView } from "react-native";
 import firestore from "@react-native-firebase/firestore"
 import { Inotas } from "../models/Inota";
 import { Alert, FlatList, Pressable, StyleSheet, Text, View, Image } from "react-native";
@@ -53,42 +54,44 @@ export default ({ navigation, route }: ListarClienteProps) => {
 
     return (
         <View style={styles.container}>
-            <Text style={{ fontSize: 30 }}>Listagem de Clientes</Text>
-            <FlatList
-                data={Cliente}
-                renderItem={(info) => {
-                    return (
-                        <View style={styles.card}>
-                            <View style={styles.dado_card}>
-                                <Text>{info.index}</Text>
-                                <Text style={{ fontSize: 35 }}>{info.item.nome}</Text>
-                                <Text>{info.item.cpf}</Text>
-                                <Text>{info.item.rua}</Text>
-                                <Text>{info.item.complemento}</Text>
-                                <Text>{info.item.bairro}</Text>
-                                <Text>{info.item.cidade}</Text>
-                                <Text>{info.item.estado}</Text>
-                                <Text>{info.item.datanasc}</Text>
+            <ScrollView>
+                <Text style={{ fontSize: 30 }}>Listagem de Clientes</Text>
+                <FlatList
+                    data={Cliente}
+                    renderItem={(info) => {
+                        return (
+                            <View style={styles.card}>
+                                <View style={styles.dado_card}>
+                                    <Text>ID: {info.index}</Text>
+                                    <Text style={{ fontSize: 35 }}>{info.item.nome}</Text>
+                                    <Text>cpf: {info.item.cpf}</Text>
+                                    <Text>rua: {info.item.rua}</Text>
+                                    <Text>complemento: {info.item.complemento}</Text>
+                                    <Text>bairro: {info.item.bairro}</Text>
+                                    <Text>cidade: {info.item.cidade}</Text>
+                                    <Text>estado: {info.item.estado}</Text>
+                                    <Text>Data de nascimento: {info.item.datanasc}</Text>
 
+                                </View>
+                                <View style={styles.botao_deletar}>
+                                    <Pressable
+                                        onPress={() => deletarCliente(info.item.id)}>
+                                        <Text style={{ fontWeight: "bold", fontSize: 50 }}>
+                                            X
+                                        </Text>
+                                    </Pressable>
+                                    <Pressable
+                                        onPress={() => AlterarCliente(info.item.id)}>
+                                        <Text style={{ fontWeight: "bold", fontSize: 50 }}>
+                                            O
+                                        </Text>
+                                    </Pressable>
+                                </View>
                             </View>
-                            <View style={styles.botao_deletar}>
-                                <Pressable
-                                    onPress={() => deletarCliente(info.item.id)}>
-                                    <Text style={{ fontWeight: "bold", fontSize: 50 }}>
-                                        X
-                                    </Text>
-                                </Pressable>
-                                <Pressable
-                                    onPress={() => AlterarCliente(info.item.id)}>
-                                    <Text style={{ fontWeight: "bold", fontSize: 50 }}>
-                                        O
-                                    </Text>
-                                </Pressable>
-                            </View>
-                        </View>
-                    );
-                }} />
+                        );
 
+                    }} />
+            </ScrollView>
         </View>
 
     );
@@ -122,6 +125,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'black'
+        backgroundColor: 'green'
     }
 })
