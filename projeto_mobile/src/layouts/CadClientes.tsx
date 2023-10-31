@@ -36,7 +36,7 @@ export default ({ navigation, route }: CadastroClienteProps) => {
             })
             .then(() => {
                 Alert.alert("Cliente", "Cadastrado com sucesso")
-                navigation.navigate('Home')
+                navigation.navigate('HomeNova')
             })
             .catch((error) => console.log(error))
             .finally(() => setIsLoading(false));

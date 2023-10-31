@@ -8,18 +8,22 @@ const AtividadeAvaliativa3 = () => {
     const [codigo, setCodigo] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
-    function cadastranota() {
+    function cadastraproduto() {
         setIsLoading(true);
 
         firestore()
-        .collection('notas')
+        .collection('Produto')
             .add({
                 nome,
                 preco,
                 codigo,
                 created_at: firestore.FieldValue.serverTimestamp()
             })
-            
+            .then(() => {
+                Alert.alert("Produto", "Cadastrado com sucesso")
+                navigation.navigate('AtividadeAvaliativa2');
+            })
+
             .catch((error) => console.log(error))
             .finally(() => setIsLoading(false));
         }
@@ -43,7 +47,7 @@ const AtividadeAvaliativa3 = () => {
                 <Pressable
                     style={styles.textoBotao}
                     disabled={isLoading}
-                    onPress={(() => cadastranota())}>
+                    onPress={(() => cadastraproduto())}>
                     <Text style={styles.textoBotao}>ARMAZENAR O PRODUTO</Text>
                 </Pressable>
             </View>

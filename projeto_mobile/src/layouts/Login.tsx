@@ -14,7 +14,7 @@ const Login = ({ navigation, route }: LoginProps) => {
         if (email && senha) {
             auth()
                 .signInWithEmailAndPassword(email, senha)
-                .then(() => { navigation.navigate('Home') })
+                .then(() => { navigation.navigate('HomeNova') })
                 .catch((error) => console.log(error))
                 .finally(() => setIsLoading(false))
         } else {

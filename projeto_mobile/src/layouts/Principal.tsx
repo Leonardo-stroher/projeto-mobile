@@ -27,6 +27,7 @@ import ExemploStylesText from './ExemploStylesText';
 import ExemploStylesView from './ExemploStyleView';
 import Login from './Login';
 import Pai from './procrastinando';
+import HomeNova from './HomeNova';
 
 
 // const lista = [
@@ -50,7 +51,7 @@ const Principal = ({ navigation, route }: HomeProps) => {
   return (
     <>
     <View style={styles.container}>
-      <Button
+      {/* <Button
         title="Go to Details"
         onPress={() => navigation.navigate('Detalhes')} />
       
@@ -62,8 +63,8 @@ const Principal = ({ navigation, route }: HomeProps) => {
         <Button
           title="Cadastrar Nota"
           color={'blue'}
-          onPress={() => navigation.navigate('CadastroNota')} />
-
+          onPress={() => navigation.navigate('CadastroNota')} /> */}
+{/* 
         <Button
           title="Cadastrar Cliente"
           color={'red'}
@@ -74,8 +75,13 @@ const Principal = ({ navigation, route }: HomeProps) => {
           color={'black'}
           onPress={() => navigation.navigate('ListaCliente')} />
 
+          <Button
+          title="Cadastro atendimento"
+          color={'black'}
+          onPress={() => navigation.navigate('CadAtendimento')} /> */}
 
-        <Pai />
+          <HomeNova />
+        <Pai /> 
       </View>
       {/* <ListaFlat array = {lista}/> */}
       {/* <ListaSection array = {listaSection}/> */}
